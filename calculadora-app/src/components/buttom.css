@@ -1,0 +1,12 @@
+.btn{
+    width: 3em;
+    height: 3em;
+    border : none;
+    border-radius: 50%;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+
