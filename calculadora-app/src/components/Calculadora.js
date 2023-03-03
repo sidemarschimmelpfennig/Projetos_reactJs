@@ -20,7 +20,6 @@ export default function Calculadora(){
             <Cbuttom name =' = '/>
             <Cbuttom name =' , '/>
             <Cbuttom name =' . '/>
-            
          </div>
    )
 }
