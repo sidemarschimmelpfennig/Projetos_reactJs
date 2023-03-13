@@ -43,9 +43,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '18ch',
       '&:focus': {
-        width: '20ch',
+        width: '24ch',
       },
     },
   },
@@ -53,35 +53,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, marginBottom: 2}}>
+      <AppBar position="static" sx={{backgroundColor: '#222'}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+        <Box display="flex" justifyContent="space-between" width="100%">
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            
+            Pokemon
           </Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Pesquise Pokemon…"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

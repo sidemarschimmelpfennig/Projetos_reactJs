@@ -1,30 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/system'
 import { Grid } from '@mui/material'
+import axios from 'axios'
 import NavBar from '../../Components/NavBar'
 import PokeCard from '../../Components/PokeCard'
 
  export default function Home() {
-    const teste = "https://pokeapi.co/api/v2/pokemon?limit=50"
-    fetch(teste).then((response) => {
-        console.log(response)
-    })
+    const [pokemons, setPokemons] = useState([ ])
+    useEffect(( ) =>{
+        getPokemons()
+    }, []
+    )
 
-    console.log(teste)
+    const getPokemons = () =>{
+        var endPoints = []
+        for (let i = 1; i < 51; i++) {
+            endPoints.push( `https://pokeapi.co/api/v2/pokemon/${i}/`)
+        }
+        console.log(endPoints)
+        const Response = axios.all(endPoints.map((endPoint)=> axios.get(endPoint))).then((res) => setPokemons(res))
+        return Response;
+    }
+    const pokeapiFilter = (name ) =>{
+        var Filter = []
+        for (var i in pokemons){
+            if (pokemons[i].name.include(name)){
+                Filter.push(pokemons[i])
+            }
+        } 
+        setPokemons(Filter)
+    }
+
+
+
     return (
-     <div>
+     <div style={{backgroundColor:'#d3d3d3'}}>
         <NavBar/>
         <Container maxWidth='false' >
-            <Grid container>
-                <Grid item xs={3}><PokeCard/></Grid>
-                <Grid item xs={3}><PokeCard/></Grid>
-                <Grid item xs={3}><PokeCard/></Grid>
-                <Grid item xs={3}><PokeCard/></Grid>
+            <Grid container spacing={2} >
+                {pokemons.map((pokemon, key)=>(
+                  <Grid item xs={2.4}  key={key}>
+                        <PokeCard name={pokemon.data.name} image={pokemon.data.sprites.front_default}/>
+                    </Grid>
+
+                ))
+                }
             </Grid>
         </Container>
-        
-        
-
      </div>
    )
  }

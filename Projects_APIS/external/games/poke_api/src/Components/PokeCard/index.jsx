@@ -5,19 +5,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function PokeCard() {
+export default function PokeCard({name,image}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 345 , borderRadius:5}} >
+      <CardActionArea >
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={image}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+          <Typography gutterBottom variant="h5" component="div" sx={{textTransform:'capitalize', fontWeight:"bold",textAlign:'center'}}>
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
           { /*Lizards are a widespread group of squamate reptiles, with over 6,000
